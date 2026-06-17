@@ -1,0 +1,208 @@
+@import "tailwindcss";
+
+/* ============================================================
+   ZAPE DESIGN SYSTEM — tokens oficiais (brand-system v0.1.0)
+   Dark-only · verde neon apenas em CTAs/accents
+   ============================================================ */
+@theme {
+  /* Cores — core (3 níveis de elevação: fundo < seção-grafite < card) */
+  --color-background: #000000; /* nível 0 — fundo mais profundo */
+  --color-surface: #1f1f1f; /* nível 2 — cards elevados (sempre destacam) */
+  --color-secondary: #3a3a3a;
+  --color-border: #383838; /* borda um pouco mais clara p/ definição */
+
+  /* Cores — brand */
+  --color-primary: #a6e22e;
+  --color-primary-hover: #b8f240;
+
+  /* Cores — texto */
+  --color-text: #ffffff;
+  --color-muted: #a9a9a9; /* secundário mais claro — melhor contraste (era #888) */
+
+  /* Cores — semânticas */
+  --color-success: #a6e22e;
+  --color-warning: #ffd600;
+  --color-error: #ff4444;
+  --color-info: #40c4ff;
+
+  /* Tipografia */
+  --font-sans: var(--font-albert), system-ui, sans-serif;
+
+  /* Raios */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+
+  /* Sombras */
+  --shadow-glow: 0 10px 20px rgba(166, 226, 46, 0.15);
+  --shadow-glow-strong: 0 0 60px rgba(166, 226, 46, 0.4);
+}
+
+/* ── Reset / base ── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-background);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-primary);
+  border-radius: 4px;
+}
+
+/* ── Utilities ── */
+.text-glow {
+  text-shadow: var(--shadow-glow-strong);
+}
+
+.grid-overlay {
+  background-image: repeating-linear-gradient(
+    90deg,
+    rgba(166, 226, 46, 0.03) 0px,
+    rgba(166, 226, 46, 0.03) 1px,
+    transparent 1px,
+    transparent 80px
+  );
+}
+
+/* ── Animação fade-in on scroll ── */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* ── Orbs verdes flutuantes (background FX) ── */
+@keyframes float-slow {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(40px, -30px) scale(1.08); }
+  66% { transform: translate(-30px, 25px) scale(0.95); }
+}
+
+@keyframes float-slower {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-50px, 40px) scale(1.12); }
+}
+
+.orb {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(80px);
+  pointer-events: none;
+  will-change: transform;
+}
+
+.orb-1 { animation: float-slow 18s ease-in-out infinite; }
+.orb-2 { animation: float-slower 24s ease-in-out infinite; }
+.orb-3 { animation: float-slow 30s ease-in-out infinite reverse; }
+
+/* ── Glow pulsante ── */
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
+}
+.animate-pulse-glow { animation: pulse-glow 4s ease-in-out infinite; }
+
+/* ── Shimmer (placeholders de imagem) ── */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.img-shimmer {
+  background: linear-gradient(
+    100deg,
+    rgba(26, 26, 26, 1) 30%,
+    rgba(166, 226, 46, 0.08) 50%,
+    rgba(26, 26, 26, 1) 70%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 3.5s ease-in-out infinite;
+}
+
+/* ── Borda gradiente animada ── */
+@keyframes border-rotate {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Linha de scroll/bounce suave ── */
+@keyframes float-y {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(8px); }
+}
+.animate-float-y { animation: float-y 2.4s ease-in-out infinite; }
+
+/* ── Marquee (faixa de logos / texto) ── */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.animate-marquee { animation: marquee 28s linear infinite; }
+
+/* ── Grid em movimento (fundo de seção) ── */
+@keyframes grid-drift {
+  from { background-position: 0 0; }
+  to { background-position: 64px 64px; }
+}
+.animate-grid-drift { animation: grid-drift 22s linear infinite; }
+
+/* ── Aurora — mancha de luz verde que deriva lentamente ── */
+@keyframes aurora-a {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.55; }
+  50% { transform: translate(8%, 12%) scale(1.18); opacity: 0.9; }
+}
+@keyframes aurora-b {
+  0%, 100% { transform: translate(0, 0) scale(1.1); opacity: 0.7; }
+  50% { transform: translate(-10%, -8%) scale(1); opacity: 0.4; }
+}
+.animate-aurora-a { animation: aurora-a 16s ease-in-out infinite; }
+.animate-aurora-b { animation: aurora-b 21s ease-in-out infinite; }
+
+/* ── Linha de scan vertical sutil ── */
+@keyframes scan-line {
+  0% { transform: translateY(-100%); opacity: 0; }
+  10%, 90% { opacity: 1; }
+  100% { transform: translateY(2000%); opacity: 0; }
+}
+.animate-scan-line { animation: scan-line 9s ease-in-out infinite; }
+
+/* ── Reveal helpers ── */
+.reveal-init { opacity: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
