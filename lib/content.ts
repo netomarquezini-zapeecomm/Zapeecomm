@@ -7,7 +7,7 @@ export const site = {
   name: "Zape Ecomm",
   shortName: "Zape",
   url: "https://www.zapeecomm.com.br", // domínio oficial confirmado
-  whatsapp: "5519999999999", // TODO: substituir pelo número real (formato 55 + DDD + número)
+  whatsapp: "5511955029339", // canal único de atendimento da Zape (16/09) — 55 + DDD + número, sem máscara (wa.me rejeita + e hífen)
   email: "contato@zapeecomm.com.br", // TODO: confirmar
   cnpj: "55.571.422/0001-09",
   address: "Rua Primo Frazato, nº 40, 2º Andar, Centro, Pedreira/SP",
